@@ -25,15 +25,10 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
 
-    // Route::get('/', 'LinkController@index');
-    // Route::post('/shorten', 'LinkController@store');
-    // Route::get('/{shortUrl}', 'LinkController@redirect');
-    // Route::get('/statistics/{shortUrl}', 'LinkController@statistics');
-
     Route::controller(UrlShortenerController::class)->group(function () {
         Route::get('/shorten', 'index')->name('shorten.index');
         Route::post('/shorten', 'store')->name('shorten.store');
-        Route::get('/{shortUrl}', 'shortener_url')->name('shorten.redirect');
+        Route::get('/shorten/{shortUrl}', 'shortener_url')->name('shorten.redirect');
         Route::get('/statistics/{shortUrl}', 'statistics')->name('shorten.statistics');
     });
 
